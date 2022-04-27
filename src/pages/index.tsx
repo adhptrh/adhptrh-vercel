@@ -75,7 +75,7 @@ export default function Index() {
       id: new Date().getTime() + Math.floor(Math.random() * 999),
       closeState: false,
       top: 75,
-      left: 100
+      left: 150
     }
   ]
 
