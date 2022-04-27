@@ -9,6 +9,7 @@ import txtImage from "../src/assets/img/txtfile.png"
 import terminalImage from "../src/assets/img/terminal.png"
 import DesktopIcon from "../src/components/DesktopIcon/DesktopIcon"
 import Terminal from "../src/components/Terminal/Terminal"
+import Head from 'next/head'
 
 export default function Index() {
   let pathInit = [
@@ -66,7 +67,7 @@ export default function Index() {
       ]
     },
   ]
-  
+
   const formsInit = [
     {
       ...pathInit[1].content[1],
@@ -74,12 +75,12 @@ export default function Index() {
       closeState: false,
     }
   ]
-  
+
   const rightClickMenuPropInit = {
     top: 0,
     left: 0,
   }
-  
+
   const [path, setPath] = useState(pathInit)
   const [zindex, setZindex] = useState(0)
   const [forms, setForms] = useState(formsInit)
@@ -194,16 +195,16 @@ export default function Index() {
         }
         break
 
-        case "terminal":
-          return <Terminal
-            key={v.id}
-            id={v.id}
-            title={v.name}
-            closeState={v.closeState}
-            width={550}
-            height={350}
-            top={i * 30 + 30} left={i * 30 + 30} />
-          break
+      case "terminal":
+        return <Terminal
+          key={v.id}
+          id={v.id}
+          title={v.name}
+          closeState={v.closeState}
+          width={550}
+          height={350}
+          top={i * 30 + 30} left={i * 30 + 30} />
+        break
     }
   })
 
@@ -226,6 +227,10 @@ export default function Index() {
   }, [])
 
   return <>
+    <Head>
+      <title>adhptrh</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
     <div
       id="desktop"
       className="w-full h-full hidden md:block"

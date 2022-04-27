@@ -63,7 +63,7 @@ export default function Container(props) {
             <div ref={titleBar} className={styles.titlebar + ""}>
                 <div className="float-right">
                     <button className={styles.button}>_</button>
-                    <button className={styles.button} onClick={() => {
+                    <button aria-label="close" className={styles.button} onClick={() => {
                         setTransform("rotateX(90deg)")
                         setTimeout(() => {
                             closeForm(props.id)
