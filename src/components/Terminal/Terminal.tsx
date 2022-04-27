@@ -12,6 +12,7 @@ export default function Terminal(props) {
 
     const [command, setCommand] = useState("")
     const console = useRef(null)
+    const inputbox = useRef(null)
     const {forms, setForms} = useContext(ZindexContext)
 
     const submitInput = (event) => {
@@ -49,13 +50,14 @@ export default function Terminal(props) {
     },[output])
 
     return <Container {...props}>
-        <div ref={console} className="h-full overflow-auto p-1 px-2 text-slate-300 font-fixedsys leading-4">
+        <div ref={console} onClick={()=>{inputbox.current.focus()}} className="h-full overflow-auto p-1 px-2 text-slate-300 font-fixedsys leading-4">
             {output.map((v,i)=>{
                 return <p key={i}>{v}</p>
             })}
             <div className="flex">
                 <p>/&gt;</p>
                 <input 
+                ref={inputbox}
                 onKeyDown={submitInput}
                 onChange={(e)=>{setCommand(e.target.value)}} 
                 value={command} 

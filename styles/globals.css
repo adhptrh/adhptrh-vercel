@@ -29,6 +29,7 @@
 body {
   font-family: raster;
   box-sizing: border-box;
+  @apply bg-color2
 }
 
 body, html, #__next {

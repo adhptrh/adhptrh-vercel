@@ -74,6 +74,8 @@ export default function Index() {
       ...pathInit[1].content[1],
       id: new Date().getTime() + Math.floor(Math.random() * 999),
       closeState: false,
+      top: 75,
+      left: 75
     }
   ]
 
@@ -175,9 +177,10 @@ export default function Index() {
           key={v.id}
           closeState={v.closeState}
           top={i * 30 + 30}
+          left={i * 30 + 30}
+          id={v.id}
           width={550}
-          height={350}
-          left={i * 30 + 30} id={v.id} />
+          height={350} />
         break
 
       case "file":
@@ -191,7 +194,8 @@ export default function Index() {
               closeState={v.closeState}
               width={550}
               height={350}
-              top={i * 30 + 30} left={i * 30 + 30} />
+              top={v.top ?? i * 30 + 30} 
+              left={v.left ?? i * 30 + 30} />
             break
         }
         break
@@ -239,7 +243,7 @@ export default function Index() {
       id="desktop" 
       onMouseDown={rightClickMenuCancelCheck}
       onMouseUp={rightClickMenu}
-      className="absolute w-full h-full hidden md:block overflow-hidden">
+      className="absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden">
 
       {RenderIcons}
       <ZindexContext.Provider value={{
@@ -267,7 +271,7 @@ export default function Index() {
       </>}
     </div>
 
-    <div className="flex absolute md:hidden top-0 w-screen h-screen text-white bg-color2 z-[9999999] items-center justify-center">
+    <div className="flex absolute md:hidden top-0 w-screen h-screen text-white z-[9999999] items-center justify-center">
       Not ready for mobile
     </div>
   </>
