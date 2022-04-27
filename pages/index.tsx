@@ -234,7 +234,7 @@ export default function Index() {
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
     </Head>
     <Image
-      src={bg.src} alt="desktop-image" layout="fill" className="" />
+      src={bg.src} alt="desktop-image" priority={true} layout="fill" />
     <div
       id="desktop" 
       onMouseDown={rightClickMenuCancelCheck}
