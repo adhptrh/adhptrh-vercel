@@ -9,7 +9,7 @@ import txtImage from "../src/assets/img/txtfile.png"
 import terminalImage from "../src/assets/img/terminal.png"
 import DesktopIcon from "../src/components/DesktopIcon/DesktopIcon"
 import Terminal from "../src/components/Terminal/Terminal"
-import { Html, Head, Main, NextScript } from 'next/document'
+import Head from "next/head"
 
 export default function Index() {
   let pathInit = [
@@ -227,48 +227,45 @@ export default function Index() {
   }, [])
 
   return <>
-    <Html lang="en">
+    <Head>
+      <title>adhptrh</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
+    </Head>
+    <div
+      id="desktop"
+      className="w-full h-full hidden md:block"
+      onMouseDown={rightClickMenuCancelCheck}
+      onMouseUp={rightClickMenu} style={{ background: "url(" + bg.src + ")", backgroundSize: "cover" }}>
 
-      <Head>
-        <title>adhptrh</title>
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-        <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
-      </Head>
-      <div
-        id="desktop"
-        className="w-full h-full hidden md:block"
-        onMouseDown={rightClickMenuCancelCheck}
-        onMouseUp={rightClickMenu} style={{ background: "url(" + bg.src + ")", backgroundSize: "cover" }}>
+      {RenderIcons}
+      <ZindexContext.Provider value={{
+        zindex: zindex,
+        setZindex: setZindex,
+        forms: forms,
+        setForms: setForms,
+        closeForm: closeForm
+      }}
+      >
+        {RenderForms}
+      </ZindexContext.Provider>
 
-        {RenderIcons}
-        <ZindexContext.Provider value={{
-          zindex: zindex,
-          setZindex: setZindex,
-          forms: forms,
-          setForms: setForms,
-          closeForm: closeForm
+      {showRightClickMenu && <>
+        <div id="ctxmenu" className="absolute bg-color2 p-1 opacity-90 rounded-md text-white" style={{
+          width: 200,
+          zIndex: 999999999,
+          top: rightClickMenuProp.top,
+          left: rightClickMenuProp.left
         }}
         >
-          {RenderForms}
-        </ZindexContext.Provider>
+          <div className="select-none px-2 rounded-md w-full hover:bg-color3" onClick={newSampleFile}>New file</div>
+          <div className="select-none px-2 rounded-md w-full text-slate-600">New folder</div>
+        </div>
+      </>}
+    </div>
 
-        {showRightClickMenu && <>
-          <div id="ctxmenu" className="absolute bg-color2 p-1 opacity-90 rounded-md text-white" style={{
-            width: 200,
-            zIndex: 999999999,
-            top: rightClickMenuProp.top,
-            left: rightClickMenuProp.left
-          }}
-          >
-            <div className="select-none px-2 rounded-md w-full hover:bg-color3" onClick={newSampleFile}>New file</div>
-            <div className="select-none px-2 rounded-md w-full text-slate-600">New folder</div>
-          </div>
-        </>}
-      </div>
-
-      <div className="flex absolute md:hidden top-0 w-screen h-screen text-white bg-color2 z-[9999999] items-center justify-center">
-        Not ready for mobile
-      </div>
-    </Html>
+    <div className="flex absolute md:hidden top-0 w-screen h-screen text-white bg-color2 z-[9999999] items-center justify-center">
+      Not ready for mobile
+    </div>
   </>
 }
