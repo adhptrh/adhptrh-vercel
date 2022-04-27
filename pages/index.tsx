@@ -10,6 +10,7 @@ import terminalImage from "../src/assets/img/terminal.png"
 import DesktopIcon from "../src/components/DesktopIcon/DesktopIcon"
 import Terminal from "../src/components/Terminal/Terminal"
 import Head from "next/head"
+import Image from "next/image"
 
 export default function Index() {
   let pathInit = [
@@ -232,11 +233,13 @@ export default function Index() {
       <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
     </Head>
+    <Image
+      src={bg.src} layout="fill" className="" />
     <div
-      id="desktop"
-      className="w-full h-full hidden md:block"
+      id="desktop" 
       onMouseDown={rightClickMenuCancelCheck}
-      onMouseUp={rightClickMenu} style={{ background: "url(" + bg.src + ")", backgroundSize: "cover" }}>
+      onMouseUp={rightClickMenu}
+      className="absolute w-full h-full hidden md:block overflow-hidden">
 
       {RenderIcons}
       <ZindexContext.Provider value={{
