@@ -1,16 +1,40 @@
-html,
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: raster;
+  src: url(/raster.ttf);
+}
+
+@font-face {
+  font-family: fixedsys;
+  src: url(/FSEX300.ttf);
+}
+
+@keyframes desktop-icon-appear {
+  0% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0deg);
+  }
+}
+
+.desktop-icon-appear {
+  animation: desktop-icon-appear 0.5s;
+}
+
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-* {
+  font-family: raster;
   box-sizing: border-box;
+}
+
+body, html, #__next {
+  height: 100%!important;
+}
+
+.test {
+  color:#313435;
 }
