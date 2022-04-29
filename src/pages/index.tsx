@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 import Container from "../components/Container/Container"
 import { ZindexContext } from "../helpers/ZindexContext"
 import bg from "../assets/img/bg.jpg"
@@ -94,11 +94,10 @@ export default function Index() {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
   }
 
-  const rightClickMenu = (event) => {
-    let e = event as MouseEvent
+  const rightClickMenu = (e:React.MouseEvent) => {
     let target = e.target as HTMLElement
     if (e.button == 2) {
-      if (target.id != "desktop") return
+      if (target.id != "rightclickable") return
       setRightClickMenuProp(ps => {
         return {
           ...ps,
@@ -116,7 +115,7 @@ export default function Index() {
   const rightClickMenuCancelCheck = (e) => {
     let target = e.target as HTMLElement
     if (target.parentElement.id == "ctxmenu") return
-    if (target.id != "desktop") setShowRightClickMenu(false)
+    if (target.id != "rightclickable") setShowRightClickMenu(false)
   }
 
   const RenderIcons = path[1].content.map((v, i) => {
@@ -240,20 +239,23 @@ export default function Index() {
     <Image
       src={bg.src} alt="desktop-image" priority={true} layout="fill" objectFit="cover" />
     <div
-      id="desktop" 
+      id="rightclickable"
       onMouseDown={rightClickMenuCancelCheck}
       onMouseUp={rightClickMenu}
       className="absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden">
 
-      {RenderIcons}
       <ZindexContext.Provider value={{
-        zindex: zindex,
-        setZindex: setZindex,
-        forms: forms,
-        setForms: setForms,
-        closeForm: closeForm
+        zindex,
+        setZindex,
+        forms,
+        setForms,
+        closeForm,
+        setShowRightClickMenu,
+        showRightClickMenu,
+        setRightClickMenuProp,
       }}
       >
+        {RenderIcons}
         {RenderForms}
       </ZindexContext.Provider>
 

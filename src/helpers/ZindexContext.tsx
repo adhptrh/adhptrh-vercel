@@ -6,4 +6,7 @@ export const ZindexContext = createContext({
     forms:[],
     setForms:(e)=>{},
     closeForm: (e)=>{},
+    setShowRightClickMenu: (e)=>{},
+    showRightClickMenu:false,
+    setRightClickMenuProp:(e)=>{},
 })

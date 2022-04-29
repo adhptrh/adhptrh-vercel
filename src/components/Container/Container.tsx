@@ -44,7 +44,7 @@ export default function Container(props) {
     }, [])
 
     return <>
-        <div onMouseDown={() => { setZind(zindex + 1); setZindex(ps => ps + 1) }} className={styles.container} style={{
+        <div onMouseDown={() => { setZind(zindex + 1); setZindex(ps => ps + 1); }} className={styles.container} style={{
             transform: transform,
             top: position.top + "px",
             left: position.left + "px",
