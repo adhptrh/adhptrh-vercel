@@ -92,6 +92,7 @@ export default function Index() {
   const [showRightClickMenu, setShowRightClickMenu] = useState(false)
   const [rightClickMenuProp, setRightClickMenuProp] = useState(rightClickMenuPropInit)
   const [rightClickDataType, setRightClickDataType] = useState("")
+  const [rightClickData, setRightClickData] = useState({id:"", path:""})
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -157,6 +158,8 @@ export default function Index() {
 
     return <DesktopIcon
       key={i}
+      id={i}
+      path={"root/desktop"}
       onDoubleClick={(e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -243,7 +246,8 @@ export default function Index() {
         setShowRightClickMenu,showRightClickMenu,
         setRightClickMenuProp,rightClickMenuProp,
         setPath,path,
-        setRightClickDataType, rightClickDataType
+        setRightClickDataType, rightClickDataType,
+        setRightClickData, rightClickData
       }}
       >
         {RenderIcons}

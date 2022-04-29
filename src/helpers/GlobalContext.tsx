@@ -1,8 +1,13 @@
 import { createContext } from "react";
 
-interface rightClickMenuProp {
+interface RightClickMenuProp {
     top?: number
     left?: number
+}
+
+interface RightClickData {
+    id?: string
+    path?: string
 }
 
 interface ContextData {
@@ -16,9 +21,11 @@ interface ContextData {
     setRightClickMenuProp: Function,
     setPath: Function,
     path: Array<any>
-    rightClickMenuProp: rightClickMenuProp,
+    rightClickMenuProp: RightClickMenuProp,
     setRightClickDataType: Function
     rightClickDataType: string
+    setRightClickData: Function
+    rightClickData: RightClickData
 }
 
 const ctx:ContextData = {
@@ -35,6 +42,8 @@ const ctx:ContextData = {
     rightClickMenuProp:{},
     setRightClickDataType: (e)=>{},
     rightClickDataType: "",
+    setRightClickData: (e)=>{},
+    rightClickData: {},
 }
 
 export const GlobalContext = createContext(ctx)
