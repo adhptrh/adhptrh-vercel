@@ -1,6 +1,6 @@
 import { MutableRefObject, useContext, useEffect, useRef, useState } from "react";
 import Container from "../Container/Container";
-import { ZindexContext } from "../../helpers/ZindexContext";
+import { GlobalContext } from "../../helpers/GlobalContext";
 
 export default function Terminal(props) {
 
@@ -13,7 +13,7 @@ export default function Terminal(props) {
     const [command, setCommand] = useState("")
     const console = useRef(null)
     const inputbox = useRef(null)
-    const {forms, setForms} = useContext(ZindexContext)
+    const {forms, setForms} = useContext(GlobalContext)
 
     const submitInput = (event) => {
         let e = event as KeyboardEvent

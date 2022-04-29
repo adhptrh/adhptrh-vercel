@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ZindexContext } from "../../helpers/ZindexContext";
+import { GlobalContext } from "../../helpers/GlobalContext";
 import Container from "../Container/Container";
 
 export default function Folder(props) {
@@ -14,7 +14,7 @@ export default function Folder(props) {
         return content
     }
 
-    const { setForms } = useContext(ZindexContext)
+    const { setForms } = useContext(GlobalContext)
     const [currentPath, setCurrentPath] = useState("")
     const [items, setItems] = useState(inspectPath(currentPath.split("/"), 0, props.path))
 

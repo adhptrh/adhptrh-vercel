@@ -1,6 +1,6 @@
 import { useContext, useEffect, useRef, useState } from "react"
 import styles from "./Container.module.css"
-import { ZindexContext } from "../../helpers/ZindexContext"
+import { GlobalContext } from "../../helpers/GlobalContext"
 
 export default function Container(props) {
 
@@ -16,7 +16,7 @@ export default function Container(props) {
         left: 0,
         top: 0
     })
-    const { zindex, setZindex, closeForm } = useContext(ZindexContext)
+    const { zindex, setZindex, closeForm } = useContext(GlobalContext)
     const [zind, setZind] = useState(0)
     const [showMovePanel, setShowMovePanel] = useState(false)
     const [position, setPosition] = useState(initialPos)

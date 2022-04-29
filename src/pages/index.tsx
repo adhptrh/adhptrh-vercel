@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react"
 import Container from "../components/Container/Container"
-import { ZindexContext } from "../helpers/ZindexContext"
+import { GlobalContext } from "../helpers/GlobalContext"
 import bg from "../assets/img/bg.jpg"
 import Folder from "../components/Folder/Folder"
 import Txt from "../components/Txt/Txt"
@@ -11,6 +11,8 @@ import DesktopIcon from "../components/DesktopIcon/DesktopIcon"
 import Terminal from "../components/Terminal/Terminal"
 import Head from "next/head"
 import Image from "next/image"
+import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
+import FileContextMenu from "../components/ContextMenu/FileContextMenu"
 
 export default function Index() {
   let pathInit = [
@@ -89,6 +91,7 @@ export default function Index() {
   const [forms, setForms] = useState(formsInit)
   const [showRightClickMenu, setShowRightClickMenu] = useState(false)
   const [rightClickMenuProp, setRightClickMenuProp] = useState(rightClickMenuPropInit)
+  const [rightClickDataType, setRightClickDataType] = useState("")
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -105,6 +108,7 @@ export default function Index() {
           left: e.clientX,
         }
       })
+      setRightClickDataType("")
       setShowRightClickMenu(true)
     } else if (e.button == 0) {
       if (target.parentElement.id == "ctxmenu") return
@@ -112,7 +116,7 @@ export default function Index() {
     }
   }
 
-  const rightClickMenuCancelCheck = (e) => {
+  const rightClickMenuCancelCheck = (e:React.MouseEvent) => {
     let target = e.target as HTMLElement
     if (target.parentElement.id == "ctxmenu") return
     if (target.id != "rightclickable") setShowRightClickMenu(false)
@@ -212,18 +216,6 @@ export default function Index() {
     }
   })
 
-  const newSampleFile = () => {
-    let temp = path
-    temp[1].content.push({
-      name: "samplefile_" + Math.floor(Math.random() * 99),
-      type: "file",
-      ext: "txt",
-      content: "this is a sample file",
-    })
-    setPath(ps => [...temp])
-    setShowRightClickMenu(false)
-  }
-
   useEffect(() => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault()
@@ -244,33 +236,20 @@ export default function Index() {
       onMouseUp={rightClickMenu}
       className="absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden">
 
-      <ZindexContext.Provider value={{
-        zindex,
-        setZindex,
-        forms,
-        setForms,
+      <GlobalContext.Provider value={{
+        zindex,setZindex,
+        forms,setForms,
         closeForm,
-        setShowRightClickMenu,
-        showRightClickMenu,
-        setRightClickMenuProp,
+        setShowRightClickMenu,showRightClickMenu,
+        setRightClickMenuProp,rightClickMenuProp,
+        setPath,path,
+        setRightClickDataType, rightClickDataType
       }}
       >
         {RenderIcons}
         {RenderForms}
-      </ZindexContext.Provider>
-
-      {showRightClickMenu && <>
-        <div id="ctxmenu" className="absolute bg-color2 p-1 opacity-90 rounded-md text-white" style={{
-          width: 200,
-          zIndex: 999999999,
-          top: rightClickMenuProp.top,
-          left: rightClickMenuProp.left
-        }}
-        >
-          <div className="select-none px-2 rounded-md w-full hover:bg-color3" onClick={newSampleFile}>New file</div>
-          <div className="select-none px-2 rounded-md w-full text-slate-600">New folder</div>
-        </div>
-      </>}
+        {showRightClickMenu && ((rightClickDataType == "file") ? <FileContextMenu/> : <DesktopContextMenu/>)  }
+      </GlobalContext.Provider>
     </div>
 
     <div className="flex absolute md:hidden top-0 w-screen h-screen text-white z-[9999999] items-center justify-center">
