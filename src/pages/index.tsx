@@ -93,6 +93,7 @@ export default function Index() {
   const [rightClickMenuProp, setRightClickMenuProp] = useState(rightClickMenuPropInit)
   const [rightClickDataType, setRightClickDataType] = useState("")
   const [rightClickData, setRightClickData] = useState({id:"", path:""})
+  const [allowMobile, setAllowMobile] = useState(false)
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -160,6 +161,15 @@ export default function Index() {
       key={i}
       id={i}
       path={"root/desktop"}
+      onTouchEnd={(e)=> {
+        e.preventDefault()
+        e.stopPropagation()
+        setForms(ps => [...ps, {
+          ...v,
+          id: new Date().getTime() + Math.floor(Math.random() * 999),
+          closeState: false,
+        }])
+      }}
       onDoubleClick={(e) => {
         e.preventDefault()
         e.stopPropagation()
@@ -228,7 +238,7 @@ export default function Index() {
   return <>
     <Head>
       <title>adhptrh</title>
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      <meta name="viewport" content="initial-scale=0.8, width=device-width" />
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
     </Head>
     <Image
@@ -237,7 +247,7 @@ export default function Index() {
       id="rightclickable"
       onMouseDown={rightClickMenuCancelCheck}
       onMouseUp={rightClickMenu}
-      className="absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden">
+      className={"absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden " + (allowMobile && "blur-none")}>
 
       <GlobalContext.Provider value={{
         zindex,setZindex,
@@ -256,8 +266,9 @@ export default function Index() {
       </GlobalContext.Provider>
     </div>
 
-    <div className="flex absolute md:hidden top-0 w-screen h-screen text-white z-[9999999] items-center justify-center">
-      Not ready for mobile
+    <div className={"flex flex-col absolute md:hidden top-0 p-10 w-full h-full text-white z-[9999999] items-center justify-center " + (allowMobile && "hidden")}>
+      <p className="text-center">Bad experience for mobile users, use pc for better experience.</p>
+      <button onClick={()=>{setAllowMobile(ps=>!ps)}} className={"bg-white mt-4 rounded-md p-3 text-color2 shadow-xl"}>It's ok, let me in.</button>
     </div>
   </>
 }

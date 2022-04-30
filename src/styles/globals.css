@@ -30,6 +30,7 @@
 body {
   font-family: raster;
   box-sizing: border-box;
+  overscroll-behavior: contain;
   @apply bg-color2
 }
 

@@ -44,7 +44,7 @@ export default function Container(props) {
     }, [])
 
     return <>
-        <div onMouseDown={() => { setZind(zindex + 1); setZindex(ps => ps + 1); }} className={styles.container} style={{
+        <div onMouseDown={() => { setZind(zindex + 1); setZindex(ps => ps + 1); }} onTouchStart={() => { setZind(zindex + 1); setZindex(ps => ps + 1); }} className={styles.container} style={{
             transform: transform,
             top: position.top + "px",
             left: position.left + "px",
@@ -59,7 +59,18 @@ export default function Container(props) {
                 setShowResizePanel(prevState => true)
                 setMouseDownPosition(prevState => { return { top: e.clientY, left: e.clientX } })
                 setSavedSize(prevState => size)
-            }} className="absolute float-right cursor-se-resize opacity-0 left-full top-full bg-black w-[10px] h-[10px]" style={{ transform: "translate(-100%,-100%)" }} />
+            }} onTouchStart={(e) => {
+                setMouseDownPosition(prevState => { return { top: e.touches[0].clientY, left: e.touches[0].clientX } })
+                setSavedSize(prevState => size)
+            }} onTouchMove={(e) => {
+                let newSize = {
+                    width: savedSize.width + (e.touches[0].clientX - mouseDownPosition.left),
+                    height: savedSize.height + (e.touches[0].clientY - mouseDownPosition.top),
+                }
+                if (newSize.width < 200) newSize.width = 200
+                if (newSize.height < 100) newSize.height = 100
+                setSize(newSize)
+            }}  className="absolute float-right cursor-se-resize opacity-0 left-full top-full bg-black w-[10px] h-[10px]" style={{ transform: "translate(-100%,-100%)" }} />
             <div ref={titleBar} className={styles.titlebar + ""}>
                 <div className="float-right">
                     <button className={styles.button}>_</button>
@@ -74,7 +85,16 @@ export default function Container(props) {
                     setShowMovePanel(prevState => true);
                     setMouseDownPosition(prevState => { return { top: e.clientY, left: e.clientX } })
                     setSavedPosition(prevState => position)
-                }} className="w-full p-1 pl-2">
+                }} onTouchStart={(e) => {
+                    setMouseDownPosition(prevState => { return { top: e.touches[0].clientY, left: e.touches[0].clientX } })
+                    setSavedPosition(prevState => position)
+                }} onTouchMove={(e) => {
+                    let newPos = {
+                        left: savedPosition.left + (e.touches[0].clientX - mouseDownPosition.left),
+                        top: savedPosition.top + (e.touches[0].clientY - mouseDownPosition.top)
+                    }
+                    setPosition(newPos)
+                }}  className="w-full p-1 pl-2">
                     <p>{props.title}</p>
                 </div>
             </div>
@@ -85,7 +105,7 @@ export default function Container(props) {
 
         </div>
         {showMovePanel && <>
-            <div onMouseUp={() => { setShowMovePanel(false); }} onMouseMove={(e) => {
+            <div onMouseUp={() => { setShowMovePanel(false); }} onTouchEnd={() => { setShowMovePanel(false); }} onMouseMove={(e) => {
                 let newPos = {
                     left: savedPosition.left + (e.clientX - mouseDownPosition.left),
                     top: savedPosition.top + (e.clientY - mouseDownPosition.top)
@@ -95,7 +115,7 @@ export default function Container(props) {
         </>}
 
         {showResizePanel && <>
-            <div onMouseUp={() => { setShowResizePanel(false) }} onMouseMove={(e) => {
+            <div onMouseUp={() => { setShowResizePanel(false) }} onTouchEnd={() => { setShowResizePanel(false) }} onMouseMove={(e) => {
                 let newSize = {
                     width: savedSize.width + (e.clientX - mouseDownPosition.left),
                     height: savedSize.height + (e.clientY - mouseDownPosition.top),
