@@ -267,7 +267,7 @@ export default function Index() {
     </div>
 
     <div className={"flex flex-col absolute md:hidden top-0 p-10 w-full h-full text-white z-[9999999] items-center justify-center " + (allowMobile && "hidden")}>
-      <p className="text-center font-bold">Message from Adhika:</p>
+      <p className="text-center font-fixedsys">Message from Adhika:</p>
       <p className="text-center">Bad experience for mobile users, use pc for better experience.</p>
       <button onClick={()=>{setAllowMobile(ps=>!ps)}} className={"bg-white mt-4 rounded-md p-3 text-color2 shadow-xl"}>It's ok, let me in.</button>
     </div>
