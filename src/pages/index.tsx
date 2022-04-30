@@ -14,62 +14,65 @@ import Image from "next/image"
 import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
 import FileContextMenu from "../components/ContextMenu/FileContextMenu"
 
+let pathInit = [
+  {
+    name: "home", type: "folder", content: [
+    ]
+  },
+  {
+    name: "desktop", type: "folder", content: [
+      { name: "File Manager", type: "filemanager", id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false },
+      {
+        name: "welcome",
+        type: "file",
+        ext: "txt",
+        content:
+          `hello there,\n` +
+          `my name is Adhika and welcome to my website\n\n` +
+          `Tips:\n` +
+          `- To open folder or file, double click it.\n` +
+          `- You can resize the window by dragging right bottom edge of the window.\n` +
+          `- Right click the wallpaper to show context menu.\n` +
+          ``, 
+        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
+      },
+      {
+        name: "aboutme",
+        type: "file",
+        ext: "txt",
+        content:
+          `Hello my full name is Adhika Putra Hermanda,\n` +
+          `I was born on 28th August 2003 at a city called Pekanbaru in Indonesia.\n\n` +
+          `Programming language that i ever used:\n` +
+          `Javascript/Typescript, Go, PHP, Python, Lua, C#, C++\n\n` +
+          `Technologies that i ever used:\n` +
+          `Laravel, NextJS, ReactJS, VueJS, Svelte, CodeIgniter, Docker, Git,\n\n` +
+          `I started programming at the age of 13, that time i created my own tools for game hacking\n` +
+          `To be continued...\n` +
+          ``, 
+        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
+      },
+      {
+        name: "Terminal",
+        type: "terminal",
+        ext: "exe",
+        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
+      },
+    ]
+  },
+  {
+    name: "documents", type: "folder", content: [
+      { name: "hello", type: "file", ext: "txt", content: "hello" },
+      { name: "lmao", type: "file", ext: "txt", content: "what are u lookin at" },
+      { name: "important", type: "folder", content: [] },
+    ]
+  },
+  {
+    name: "gallery", type: "folder", content: [
+    ]
+  },
+]
 export default function Index() {
-  let pathInit = [
-    {
-      name: "home", type: "folder", content: [
-      ]
-    },
-    {
-      name: "desktop", type: "folder", content: [
-        { name: "File Manager", type: "filemanager" },
-        {
-          name: "welcome",
-          type: "file",
-          ext: "txt",
-          content:
-            `hello there,\n` +
-            `my name is Adhika and welcome to my website\n\n` +
-            `Tips:\n` +
-            `- To open folder or file, double click it.\n` +
-            `- You can resize the window by dragging right bottom edge of the window.\n` +
-            `- Right click the wallpaper to show context menu.\n` +
-            ``
-        },
-        {
-          name: "aboutme",
-          type: "file",
-          ext: "txt",
-          content:
-            `Hello my full name is Adhika Putra Hermanda,\n` +
-            `I was born on 28th August 2003 at a city called Pekanbaru in Indonesia.\n\n` +
-            `Programming language that i ever used:\n` +
-            `Javascript/Typescript, Go, PHP, Python, Lua, C#, C++\n\n` +
-            `Technologies that i ever used:\n` +
-            `Laravel, NextJS, ReactJS, VueJS, Svelte, CodeIgniter, Docker, Git,\n\n` +
-            `I started programming at the age of 13, that time i created my own tools for game hacking\n` +
-            `To be continued...\n` +
-            ``
-        },
-        {
-          name: "Terminal",
-          type: "terminal",
-          ext: "exe",
-        },
-      ]
-    },
-    {
-      name: "documents", type: "folder", content: [
-        { name: "hello", type: "file", ext: "txt", content: "hello" },
-        { name: "lmao", type: "file", ext: "txt", content: "what are u lookin at" },
-        { name: "important", type: "folder", content: [] },
-      ]
-    },
-    {
-      name: "gallery", type: "folder", content: [
-      ]
-    },
-  ]
 
   const formsInit = [
     {
@@ -94,9 +97,22 @@ export default function Index() {
   const [rightClickDataType, setRightClickDataType] = useState("")
   const [rightClickData, setRightClickData] = useState({id:"", path:""})
   const [allowMobile, setAllowMobile] = useState(false)
+  const [update, setUpdate] = useState(false)
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
+  }
+
+  const deleteDesktopFile = (id) => {
+    let temp = path
+    path[1].content = (path[1].content as any).filter((v,i) => {
+      if (v.id == id) {
+        return false
+      }
+      return true
+    })
+    setPath(ps=>temp)
+    setUpdate(ps=>!ps)
   }
 
   const rightClickMenu = (e:React.MouseEvent) => {
@@ -158,9 +174,10 @@ export default function Index() {
     }
 
     return <DesktopIcon
-      key={i}
-      id={i}
+      key={v.id}
+      id={v.id}
       path={"root/desktop"}
+      closestate={v.closeState.toString()}
       onTouchEnd={(e)=> {
         e.preventDefault()
         e.stopPropagation()
@@ -257,7 +274,8 @@ export default function Index() {
         setRightClickMenuProp,rightClickMenuProp,
         setPath,path,
         setRightClickDataType, rightClickDataType,
-        setRightClickData, rightClickData
+        setRightClickData, rightClickData,
+        deleteDesktopFile
       }}
       >
         {RenderIcons}
@@ -271,5 +289,6 @@ export default function Index() {
       <p className="text-center">Bad experience for mobile users, use pc for better experience.</p>
       <button onClick={()=>{setAllowMobile(ps=>!ps)}} className={"bg-white mt-4 rounded-md p-3 text-color2 shadow-xl"}>It&apos;s ok, let me in.</button>
     </div>
+    {update && <p className="absolute"></p>}
   </>
 }

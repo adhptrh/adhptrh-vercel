@@ -26,6 +26,7 @@ interface ContextData {
     rightClickDataType: string
     setRightClickData: Function
     rightClickData: RightClickData
+    deleteDesktopFile: Function
 }
 
 const ctx:ContextData = {
@@ -44,6 +45,7 @@ const ctx:ContextData = {
     rightClickDataType: "",
     setRightClickData: (e)=>{},
     rightClickData: {},
+    deleteDesktopFile: (e)=>{},
 }
 
 export const GlobalContext = createContext(ctx)

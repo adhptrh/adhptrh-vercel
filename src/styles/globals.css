@@ -27,6 +27,10 @@
   animation: desktop-icon-appear 0.5s;
 }
 
+.transition05 {
+  transition:all 0.5s;
+}
+
 body {
   font-family: raster;
   box-sizing: border-box;
@@ -40,4 +44,9 @@ body, html, #__next {
 
 .test {
   color:#313435;
+}
+
+.fade {
+  opacity: 0;
+  transform: rotateX(90deg);
 }

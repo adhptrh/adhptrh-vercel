@@ -12,6 +12,7 @@ export default function DesktopContextMenu(props) {
         type: "file",
         ext: "txt",
         content: "this is a sample file",
+        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
         })
         setPath(ps => [...temp])
         setShowRightClickMenu(false)
