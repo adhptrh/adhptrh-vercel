@@ -4,7 +4,14 @@ import { GlobalContext } from "../../helpers/GlobalContext"
 
 export default function DesktopIcon(props) {
 
-  const { deleteDesktopFile, setRightClickData, setShowRightClickMenu, setRightClickMenuProp, setRightClickDataType } = useContext(GlobalContext)
+  const { 
+    deleteDesktopFile, 
+    setRightClickData, 
+    setShowRightClickMenu, 
+    setRightClickMenuProp, 
+    setRightClickDataType 
+  } = useContext(GlobalContext)
+
   const onRightClick = (e: React.MouseEvent) => {
     if (e.button == 2) {
       setRightClickMenuProp(ps => {

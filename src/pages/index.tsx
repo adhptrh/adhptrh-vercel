@@ -14,67 +14,9 @@ import Image from "next/image"
 import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
 import FileContextMenu from "../components/ContextMenu/FileContextMenu"
 
-let pathInit = [
-  {
-    name: "home", type: "folder", content: [
-    ]
-  },
-  {
-    name: "desktop", type: "folder", content: [
-      { name: "File Manager", type: "filemanager", id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false },
-      {
-        name: "welcome",
-        type: "file",
-        ext: "txt",
-        content:
-          `hello there,\n` +
-          `my name is Adhika and welcome to my website\n\n` +
-          `Tips:\n` +
-          `- To open folder or file, double click it.\n` +
-          `- You can resize the window by dragging right bottom edge of the window.\n` +
-          `- Right click the wallpaper to show context menu.\n` +
-          ``, 
-        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
-      },
-      {
-        name: "aboutme",
-        type: "file",
-        ext: "txt",
-        content:
-          `Hello my full name is Adhika Putra Hermanda,\n` +
-          `I was born on 28th August 2003 at a city called Pekanbaru in Indonesia.\n\n` +
-          `Programming language that i ever used:\n` +
-          `Javascript/Typescript, Go, PHP, Python, Lua, C#, C++\n\n` +
-          `Technologies that i ever used:\n` +
-          `Laravel, NextJS, ReactJS, VueJS, Svelte, CodeIgniter, Docker, Git,\n\n` +
-          `I started programming at the age of 13, that time i created my own tools for game hacking\n` +
-          `To be continued...\n` +
-          ``, 
-        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
-      },
-      {
-        name: "Terminal",
-        type: "terminal",
-        ext: "exe",
-        id: new Date().getTime() + Math.floor(Math.random() * 999), closeState: false
-      },
-    ]
-  },
-  {
-    name: "documents", type: "folder", content: [
-      { name: "hello", type: "file", ext: "txt", content: "hello" },
-      { name: "lmao", type: "file", ext: "txt", content: "what are u lookin at" },
-      { name: "important", type: "folder", content: [] },
-    ]
-  },
-  {
-    name: "gallery", type: "folder", content: [
-    ]
-  },
-]
 export default function Index() {
 
-  const formsInit = [
+  /* const formsInit = [
     {
       ...pathInit[1].content[1],
       id: new Date().getTime() + Math.floor(Math.random() * 999),
@@ -82,22 +24,23 @@ export default function Index() {
       top: 75,
       left: 150
     }
-  ]
+  ] */
 
   const rightClickMenuPropInit = {
     top: 0,
     left: 0,
   }
 
-  const [path, setPath] = useState(pathInit)
+  const [path, setPath] = useState([])
   const [zindex, setZindex] = useState(0)
-  const [forms, setForms] = useState(formsInit)
+  const [forms, setForms] = useState([])
   const [showRightClickMenu, setShowRightClickMenu] = useState(false)
   const [rightClickMenuProp, setRightClickMenuProp] = useState(rightClickMenuPropInit)
   const [rightClickDataType, setRightClickDataType] = useState("")
   const [rightClickData, setRightClickData] = useState({id:"", path:""})
   const [allowMobile, setAllowMobile] = useState(false)
   const [update, setUpdate] = useState(false)
+  const [renderIcons, setRenderIcons] = useState([])
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -113,6 +56,7 @@ export default function Index() {
     })
     setPath(ps=>temp)
     setUpdate(ps=>!ps)
+    updateIcon()
   }
 
   const rightClickMenu = (e:React.MouseEvent) => {
@@ -139,68 +83,6 @@ export default function Index() {
     if (target.parentElement.id == "ctxmenu") return
     if (target.id != "rightclickable") setShowRightClickMenu(false)
   }
-
-  const RenderIcons = path[1].content.map((v, i) => {
-    let properties = {
-      icon: "",
-      title: ""
-    }
-
-    switch (v.type) {
-      case "filemanager":
-        properties.icon = folderImage.src
-        properties.title = v.name
-        break
-
-      case "file":
-        switch (v.ext) {
-          case "txt":
-            properties.icon = txtImage.src
-            break
-
-          case "exe":
-            properties.icon = terminalImage.src
-            break
-        }
-
-        properties.title = v.name + "." + v.ext
-        break
-
-      case "terminal":
-        properties.title = v.name + "." + v.ext
-        properties.icon = terminalImage.src
-        break
-
-    }
-
-    return <DesktopIcon
-      key={v.id}
-      id={v.id}
-      path={"root/desktop"}
-      closestate={v.closeState.toString()}
-      onTouchEnd={(e)=> {
-        e.preventDefault()
-        e.stopPropagation()
-        setForms(ps => [...ps, {
-          ...v,
-          id: new Date().getTime() + Math.floor(Math.random() * 999),
-          closeState: false,
-        }])
-      }}
-      onDoubleClick={(e) => {
-        e.preventDefault()
-        e.stopPropagation()
-        setForms(ps => [...ps, {
-          ...v,
-          id: new Date().getTime() + Math.floor(Math.random() * 999),
-          closeState: false,
-        }])
-      }}
-      icon={properties.icon}
-      title={properties.title}
-      top={30 + (i * 100)}
-      left={30} />
-  })
 
   const RenderForms = forms.map((v, i) => {
     switch (v.type) {
@@ -246,11 +128,96 @@ export default function Index() {
     }
   })
 
+  const updateIcon = () => {
+    if (!path[1]) return
+    setRenderIcons(path[1].content.map((v, i) => {
+      let properties = {
+        icon: "",
+        title: ""
+      }
+  
+      switch (v.type) {
+        case "filemanager":
+          properties.icon = folderImage.src
+          properties.title = v.name
+          break
+  
+        case "file":
+          switch (v.ext) {
+            case "txt":
+              properties.icon = txtImage.src
+              break
+  
+            case "exe":
+              properties.icon = terminalImage.src
+              break
+          }
+  
+          properties.title = v.name + "." + v.ext
+          break
+  
+        case "terminal":
+          properties.title = v.name + "." + v.ext
+          properties.icon = terminalImage.src
+          break
+  
+      }
+  
+      return <DesktopIcon
+        key={v.id}
+        id={v.id}
+        path={"root/desktop"}
+        closestate={v.closeState.toString()}
+        onTouchEnd={(e)=> {
+          e.preventDefault()
+          e.stopPropagation()
+          setForms(ps => [...ps, {
+            ...v,
+            id: new Date().getTime() + Math.floor(Math.random() * 999),
+            closeState: false,
+          }])
+        }}
+        onDoubleClick={(e) => {
+          e.preventDefault()
+          e.stopPropagation()
+          setForms(ps => [...ps, {
+            ...v,
+            id: new Date().getTime() + Math.floor(Math.random() * 999),
+            closeState: false,
+          }])
+        }}
+        icon={properties.icon}
+        title={properties.title}
+        top={30 + (i * 100)}
+        left={30} />
+    }))
+  }
+
   useEffect(() => {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault()
     })
+    
+    fetch("/api/hello").then((r)=>{
+      r.json().then((v)=>{
+        setPath(v)
+        setForms([
+          {
+            ...v[1].content[1],
+            id: new Date().getTime() + Math.floor(Math.random() * 999),
+            closeState: false,
+            top: 75,
+            left: 150
+          }
+        ])
+
+      })
+    })
   }, [])
+
+  useEffect(()=>{
+    updateIcon()
+  },[path])
 
   return <>
     <Head>
@@ -275,10 +242,11 @@ export default function Index() {
         setPath,path,
         setRightClickDataType, rightClickDataType,
         setRightClickData, rightClickData,
-        deleteDesktopFile
+        deleteDesktopFile,
+        updateIcon
       }}
       >
-        {RenderIcons}
+        {renderIcons}
         {RenderForms}
         {showRightClickMenu && ((rightClickDataType == "file") ? <FileContextMenu/> : <DesktopContextMenu/>)  }
       </GlobalContext.Provider>

@@ -13,20 +13,21 @@ interface RightClickData {
 interface ContextData {
     zindex: number
     setZindex: Function
-    forms: Array<any>,
-    setForms: Function,
-    closeForm: Function,
-    setShowRightClickMenu: Function,
-    showRightClickMenu: boolean,
-    setRightClickMenuProp: Function,
-    setPath: Function,
+    forms: Array<any>
+    setForms: Function
+    closeForm: Function
+    setShowRightClickMenu: Function
+    showRightClickMenu: boolean
+    setRightClickMenuProp: Function
+    setPath: Function
     path: Array<any>
-    rightClickMenuProp: RightClickMenuProp,
+    rightClickMenuProp: RightClickMenuProp
     setRightClickDataType: Function
     rightClickDataType: string
     setRightClickData: Function
     rightClickData: RightClickData
     deleteDesktopFile: Function
+    updateIcon: Function
 }
 
 const ctx:ContextData = {
@@ -46,6 +47,7 @@ const ctx:ContextData = {
     setRightClickData: (e)=>{},
     rightClickData: {},
     deleteDesktopFile: (e)=>{},
+    updateIcon: (e)=>{}
 }
 
 export const GlobalContext = createContext(ctx)

@@ -1,19 +1,19 @@
-import { useContext } from "react"
+import { useContext, useEffect } from "react"
 import { GlobalContext } from "../../helpers/GlobalContext"
 
 export default function FileContextMenu(props) {
 
-  const { rightClickData,setPath, path, rightClickMenuProp, setShowRightClickMenu} = useContext(GlobalContext)
+  const { rightClickData,updateIcon, setPath, path, rightClickMenuProp, setShowRightClickMenu} = useContext(GlobalContext)
 
   const deleteDesktopFile = (e) => {
     let temp = path
-    path[1].content = path[1].content.filter((v,i) => {
+    temp[1].content = temp[1].content.filter((v,i) => {
       if (v.id == rightClickData.id) {
         v.closeState = "true"
       }
       return true
     })
-    setPath(ps=>temp)
+    setPath(ps => [...temp])
     setShowRightClickMenu(false)
   }
 
