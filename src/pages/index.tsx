@@ -198,7 +198,7 @@ export default function Index() {
       e.preventDefault()
     })
     
-    fetch("/api/hello").then((r)=>{
+    fetch("https://raw.githubusercontent.com/adhptrh/adhptrh-vercel/main/response/path").then((r)=>{
       r.json().then((v)=>{
         setPath(v)
         setForms([
