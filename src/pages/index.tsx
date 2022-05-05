@@ -193,11 +193,7 @@ export default function Index() {
     }))
   }
 
-  useEffect(() => {
-    document.addEventListener("contextmenu", (e) => {
-      e.preventDefault()
-    })
-    
+  const fetchapi = async () => {
     fetch("https://raw.githubusercontent.com/adhptrh/adhptrh-vercel/main/response/path").then((r)=>{
       r.json().then((v)=>{
         setPath(v)
@@ -213,6 +209,13 @@ export default function Index() {
 
       })
     })
+  }
+
+  useEffect(() => {
+    document.addEventListener("contextmenu", (e) => {
+      e.preventDefault()
+    })
+    fetchapi()
   }, [])
 
   useEffect(()=>{
