@@ -1,0 +1,77 @@
+[
+    {
+        "name": "home",
+        "type": "folder",
+        "content": []
+    },
+    {
+        "name": "desktop",
+        "type": "folder",
+        "content": [
+            {
+                "name": "File Manager",
+                "type": "filemanager",
+                "id": 1,
+                "closeState": false
+            },
+            {
+                "name": "welcome",
+                "type": "file",
+                "ext": "txt",
+                "content": "hello there,\nmy name is Adhika and welcome to my website\n\nTips:\n- To open folder or file, double click it.\n- You can resize the window by dragging right bottom edge of the window.\n- Right click the wallpaper to show context menu.\n",
+                "id": 2,
+                "closeState": false
+            },
+            {
+                "name": "aboutme",
+                "type": "file",
+                "ext": "txt",
+                "content": "Hello my full name is Adhika Putra Hermanda,\nI was born on 28th August 2003 at a city called Pekanbaru in Indonesia.\n\nProgramming language that i ever used:\nJavascript/Typescript, Go, PHP, Python, Lua, C#, C++\n\nTechnologies that i ever used:\nLaravel, NextJS, ReactJS, VueJS, Svelte, CodeIgniter, Docker, Git,\n\nI started programming at the age of 13, that time i created my own tools for game hacking\nTo be continued...\n",
+                "id": 3,
+                "closeState": false
+            },
+            {
+                "name": "Terminal",
+                "type": "terminal",
+                "ext": "exe",
+                "id": 4,
+                "closeState": false
+            }
+        ]
+    },
+    {
+        "name": "documents",
+        "type": "folder",
+        "content": [
+            {
+                "name": "hello",
+                "type": "file",
+                "ext": "txt",
+                "content": "hello"
+            },
+            {
+                "name": "lmao",
+                "type": "file",
+                "ext": "txt",
+                "content": "what are u lookin at"
+            },
+            {
+                "name": "important",
+                "type": "folder",
+                "content": []
+            }
+        ]
+    },
+    {
+        "name": "videos",
+        "type": "folder",
+        "content": [
+            {
+                "name": "homemade bell sekolah arduino",
+                "type": "file",
+                "ext": "mp4",
+                "content": "what are u lookin at"
+            }
+        ]
+    }
+]

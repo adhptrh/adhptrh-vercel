@@ -13,6 +13,7 @@ import Head from "next/head"
 import Image from "next/image"
 import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
 import FileContextMenu from "../components/ContextMenu/FileContextMenu"
+import Video from "../components/Video/Video"
 
 export default function Index() {
 
@@ -112,6 +113,17 @@ export default function Index() {
               top={v.top ?? i * 30 + 30} 
               left={v.left ?? i * 30 + 30} />
             break
+          case "mp4":
+            return <Video
+              key={v.id}
+              id={v.id}
+              title={v.name + "." + v.ext}
+              closeState={v.closeState}
+              width={550}
+              height={350}
+              top={v.top ?? i * 30 + 30} 
+              left={v.left ?? i * 30 + 30} />
+            break
         }
         break
 
@@ -194,7 +206,7 @@ export default function Index() {
   }
 
   const fetchapi = async () => {
-    fetch("https://raw.githubusercontent.com/adhptrh/adhptrh-vercel/main/response/path").then((r)=>{
+    fetch("/path").then((r)=>{
       r.json().then((v)=>{
         setPath(v)
         setForms([
