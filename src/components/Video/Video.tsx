@@ -1,7 +1,7 @@
 import Container from "../Container/Container";
 
 export default function Video(props) {
-    return <Container title={props.title}>
+    return <Container {...props} title={props.title}>
     <div className="flex w-full h-full">
       <video width="100%" controls>
         <source src="video.mp4" type="video/mp4"/>
