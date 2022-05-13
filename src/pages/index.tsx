@@ -240,6 +240,7 @@ export default function Index() {
       <meta name="viewport" content="initial-scale=0.8, width=device-width" />
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
     </Head>
+    <p className="font-fixedsys opacity-0 absolute">load</p>
     <Image
       src={bg.src} alt="desktop-image" priority={true} layout="fill" objectFit="cover" />
     <div
