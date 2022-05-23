@@ -26,7 +26,7 @@ export default function Terminal(props) {
                 case "help":
                     setOutput(ps=>[...ps,
                         "help: show list of commands",
-                        "killforms: close all opened form included this terminal",
+                        "killforms: close all opened form including this terminal",
                     ])
                 break
                 case "killforms":
