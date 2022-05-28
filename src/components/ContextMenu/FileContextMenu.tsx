@@ -13,6 +13,7 @@ export default function FileContextMenu(props) {
       }
       return true
     })
+    updateIcon()
     setPath(ps => [...temp])
     setShowRightClickMenu(false)
   }

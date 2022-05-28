@@ -42,6 +42,7 @@ export default function Index() {
   const [allowMobile, setAllowMobile] = useState(false)
   const [update, setUpdate] = useState(false)
   const [renderIcons, setRenderIcons] = useState([])
+  const [maxHeight, setMaxHeight] = useState(1000)
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -142,7 +143,15 @@ export default function Index() {
 
   const updateIcon = () => {
     if (!path[1]) return
+    let top = -70
+    let left = 30
     setRenderIcons(path[1].content.map((v, i) => {
+      top += 100
+      if (top+60 > maxHeight) {
+        left += 130
+        top = 30
+      }
+
       let properties = {
         icon: "",
         title: ""
@@ -174,7 +183,7 @@ export default function Index() {
           break
   
       }
-  
+
       return <DesktopIcon
         key={v.id}
         id={v.id}
@@ -200,8 +209,8 @@ export default function Index() {
         }}
         icon={properties.icon}
         title={properties.title}
-        top={30 + (i * 100)}
-        left={30} />
+        top={top}
+        left={left} />
     }))
   }
 
@@ -227,12 +236,18 @@ export default function Index() {
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault()
     })
+    setMaxHeight(window.innerHeight)
+    updateIcon()
+    window.addEventListener('resize', (e) => {
+      setMaxHeight(window.innerHeight)
+      updateIcon()
+    })
     fetchapi()
   }, [])
 
   useEffect(()=>{
     updateIcon()
-  },[path])
+  },[path, maxHeight])
 
   return <>
     <Head>
