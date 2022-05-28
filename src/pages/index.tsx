@@ -93,8 +93,8 @@ export default function Index() {
           path={path}
           key={v.id}
           closeState={v.closeState}
-          top={i * 30 + 30}
-          left={i * 30 + 30}
+          top={v.top ?? i * 30 + 30}
+          left={v.left ?? i * 30 + 30}
           id={v.id}
           width={550}
           height={350} />
@@ -248,7 +248,7 @@ export default function Index() {
         setPath(v)
         setForms([
           {
-            ...v[1].content[1],
+            ...v[1].content[0],
             id: new Date().getTime() + Math.floor(Math.random() * 999),
             closeState: false,
             top: 75,

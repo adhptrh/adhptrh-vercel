@@ -50,6 +50,7 @@ export default function Folder(props) {
                             key={i} 
                             className="select-none px-2 rounded-md hover:bg-color3" 
                             onDoubleClick={(e) => { e.preventDefault(); clickFolder(v) }}
+                            onTouchEnd={()=>{clickFolder(v)}}
                             >{v.name}</div>
                         break
 
@@ -57,6 +58,13 @@ export default function Folder(props) {
                             return <div 
                             key={i} 
                             className="select-none px-2 rounded-md hover:bg-color3" 
+                            onTouchEnd={(e) => {
+                                setForms(ps => [...ps, {
+                                    ...v,
+                                    id: new Date().getTime() + Math.floor(Math.random() * 100),
+                                    closeState: false,
+                                }])
+                            }}
                             onDoubleClick={(e) => {
                                 setForms(ps => [...ps, {
                                     ...v,
@@ -70,6 +78,13 @@ export default function Folder(props) {
                             return <div 
                             key={i} 
                             className="select-none px-2 rounded-md hover:bg-color3" 
+                            onTouchEnd={(e) => {
+                                setForms(ps => [...ps, {
+                                    ...v,
+                                    id: new Date().getTime() + Math.floor(Math.random() * 100),
+                                    closeState: false,
+                                }])
+                            }}
                             onDoubleClick={(e) => {
                                 setForms(ps => [...ps, {
                                     ...v,
@@ -83,6 +98,13 @@ export default function Folder(props) {
                             return <div 
                             key={i} 
                             className="select-none px-2 rounded-md hover:bg-color3" 
+                            onTouchEnd={(e) => {
+                                setForms(ps => [...ps, {
+                                    ...v,
+                                    id: new Date().getTime() + Math.floor(Math.random() * 100),
+                                    closeState: false,
+                                }])
+                            }}
                             onDoubleClick={(e) => {
                                 setForms(ps => [...ps, {
                                     ...v,

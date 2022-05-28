@@ -9,6 +9,12 @@
         "type": "folder",
         "content": [
             {
+                "name": "File Manager",
+                "type": "filemanager",
+                "id": 1,
+                "closeState": false
+            },
+            {
                 "name": "Achievements",
                 "type": "folder",
                 "inspect": "desktop/Achievements",
@@ -48,10 +54,17 @@
                 ]
             },
             {
-                "name": "File Manager",
-                "type": "filemanager",
-                "id": 1,
-                "closeState": false
+                "name": "Projects",
+                "type": "folder",
+                "inspect": "desktop/Projects",
+                "content": [
+                    {
+                        "name": "homemade bell sekolah arduino",
+                        "type": "file",
+                        "ext": "mp4",
+                        "content": "what are u lookin at"
+                    }
+                ]
             },
             {
                 "name": "welcome",
