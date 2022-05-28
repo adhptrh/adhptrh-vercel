@@ -71,15 +71,23 @@
                 "name": "welcome",
                 "type": "file",
                 "ext": "txt",
-                "content": "hello there,\nmy name is Adhika and welcome to my website\n\nTips:\n- To open folder or file, double click it.\n- You can resize the window by dragging right bottom edge of the window.\n- Right click the wallpaper to show context menu.\n",
+                "content": "Hello there,\nwelcome to my website\n\nTips:\n- To open folder or file, double click it.\n- You can resize the window by dragging right bottom edge of the window.\n- Right click the wallpaper to show context menu.\n",
                 "id": 2,
                 "closeState": false
             },
             {
-                "name": "aboutme",
+                "name": "introduction",
                 "type": "file",
                 "ext": "txt",
-                "content": "Hello my full name is Adhika Putra Hermanda,\nI was born on 28th August 2003 at a city called Pekanbaru in Indonesia.\n\nProgramming language that i ever used:\nJavascript/Typescript, Go, PHP, Python, Lua, C#, C++\n\nTechnologies that i ever used:\nLaravel, NextJS, ReactJS, VueJS, Svelte, CodeIgniter, Docker, Git,\n\nI started programming at the age of 13, that time i created my own tools for game hacking\nTo be continued...\n",
+                "content": "Hi there, my name is Adhika Putra Hermanda you can call me Dika.\nMy nationality is Indonesian and I was born in Pekanbaru, August 28, 2003.\nMy hobbies are Programming, Listening to music, Playing Piano and Guitar, Composing music, and watching some Anime.",
+                "id": 2,
+                "closeState": false
+            },
+            {
+                "name": "skills",
+                "type": "file",
+                "ext": "txt",
+                "content": "Tools that i use:\n- Visual Studio Code\nMostly to code a websites and a command line interface application.\n- Visual Studio\nMostly to code a windows form application using C#.\n- Git\nHelp to manage my project and collaborating with other programmers.\n- Docker\nEasily send a project to anyone without getting errors with them.\n- Tensorflow\nTraining a model to recognize image to detect an object.\n\nFrameworks that i use:\n- Fiber, Laravel, CodeIgniter, ReactJS, NextJS, VueJS, Svelte.\n\nLanguage that i use:\n- Javascript/Typescript, Go, Python, C++, C#, Lua.\n\nDatabase that i use:\n- MySQL/MariaDB, MongoDB, Text file.\n\nConcept:\n- RESTful API, MVC, OOP.",
                 "id": 3,
                 "closeState": false
             },
