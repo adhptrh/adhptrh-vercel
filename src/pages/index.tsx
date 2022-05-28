@@ -14,7 +14,7 @@ import Image from "next/image"
 import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
 import FileContextMenu from "../components/ContextMenu/FileContextMenu"
 import Video from "../components/Video/Video"
-
+import Photo from "../components/Photo/Photo"
 export default function Index() {
 
   /* const formsInit = [
@@ -99,11 +99,34 @@ export default function Index() {
           width={550}
           height={350} />
         break
-
+      case "folder":
+        return <Folder
+          path={path}
+          inspect={v.inspect}
+          key={v.id}
+          closeState={v.closeState}
+          top={i * 30 + 30}
+          left={i * 30 + 30}
+          id={v.id}
+          width={550}
+          height={350} />
+        break
       case "file":
         switch (v.ext) {
           case "txt":
             return <Txt
+              key={v.id}
+              id={v.id}
+              title={v.name + "." + v.ext}
+              content={v.content}
+              closeState={v.closeState}
+              width={550}
+              height={350}
+              top={v.top ?? i * 30 + 30} 
+              left={v.left ?? i * 30 + 30} />
+            break
+          case "png":
+            return <Photo
               key={v.id}
               id={v.id}
               title={v.name + "." + v.ext}
@@ -162,6 +185,10 @@ export default function Index() {
           properties.icon = folderImage.src
           properties.title = v.name
           break
+        case "folder":
+          properties.icon = folderImage.src
+          properties.title = v.name
+          break
   
         case "file":
           switch (v.ext) {
@@ -184,11 +211,12 @@ export default function Index() {
   
       }
 
+      
+
       return <DesktopIcon
         key={v.id}
         id={v.id}
         path={"root/desktop"}
-        closestate={v.closeState.toString()}
         onTouchEnd={(e)=> {
           e.preventDefault()
           e.stopPropagation()
@@ -248,7 +276,6 @@ export default function Index() {
   useEffect(()=>{
     updateIcon()
   },[path, maxHeight])
-
   return <>
     <Head>
       <title>adhptrh</title>

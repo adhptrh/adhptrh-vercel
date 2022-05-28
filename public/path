@@ -9,6 +9,45 @@
         "type": "folder",
         "content": [
             {
+                "name": "Achievements",
+                "type": "folder",
+                "inspect": "desktop/Achievements",
+                "content": [
+                    {
+                        "name": "Medallion of Excellence LKS Tingkat Nasional Bidang Web Technologies",
+                        "type": "file",
+                        "ext": "png",
+                        "content": "assets/img/moe.png",
+                        "id": 5,
+                        "closeState": false
+                    },
+                    {
+                        "name": "Peringkat 1 LKS Tingkat Provinsi Bidang Web Technologies",
+                        "type": "file",
+                        "ext": "png",
+                        "content": "assets/img/lksp.png",
+                        "id": 6,
+                        "closeState": false
+                    },
+                    {
+                        "name": "Peringkat 1 UKK Rekayasa Perangkat Lunak SMK Labor Pekanbaru",
+                        "type": "file",
+                        "ext": "png",
+                        "content": "assets/img/ukk.png",
+                        "id": 7,
+                        "closeState": false
+                    },
+                    {
+                        "name": "Top 10 Finalis Permata Youth Preneur",
+                        "type": "file",
+                        "ext": "png",
+                        "content": "assets/img/pyp.png",
+                        "id": 8,
+                        "closeState": false
+                    }
+                ]
+            },
+            {
                 "name": "File Manager",
                 "type": "filemanager",
                 "id": 1,
@@ -36,29 +75,6 @@
                 "ext": "exe",
                 "id": 4,
                 "closeState": false
-            }
-        ]
-    },
-    {
-        "name": "documents",
-        "type": "folder",
-        "content": [
-            {
-                "name": "hello",
-                "type": "file",
-                "ext": "txt",
-                "content": "hello"
-            },
-            {
-                "name": "lmao",
-                "type": "file",
-                "ext": "txt",
-                "content": "what are u lookin at"
-            },
-            {
-                "name": "important",
-                "type": "folder",
-                "content": []
             }
         ]
     },

@@ -15,7 +15,7 @@ export default function Folder(props) {
     }
 
     const { setForms } = useContext(GlobalContext)
-    const [currentPath, setCurrentPath] = useState("")
+    const [currentPath, setCurrentPath] = useState(props.inspect ?? "")
     const [items, setItems] = useState(inspectPath(currentPath.split("/"), 0, props.path))
 
     const gotoPath = (path) => {
