@@ -7,7 +7,7 @@ export default function DesktopContextMenu(props) {
 
   const newSampleFile = () => {
     let temp = path
-    temp[1].content.push({
+    temp[0].content.push({
       name: "samplefile_" + Math.floor(Math.random() * 99),
       type: "file",
       ext: "txt",
