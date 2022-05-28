@@ -64,6 +64,12 @@
                         "type": "file",
                         "ext": "mp4",
                         "content":"assets/video/sandbox.mp4"
+                    },
+                    {
+                        "name": "image processing to detect puzzle",
+                        "type": "file",
+                        "ext": "mp4",
+                        "content":"assets/video/imgproc.mp4"
                     }
                 ]
             },
