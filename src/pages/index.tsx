@@ -145,6 +145,7 @@ export default function Index() {
               closeState={v.closeState}
               width={550}
               height={350}
+              content={v.content}
               top={v.top ?? i * 30 + 30} 
               left={v.left ?? i * 30 + 30} />
             break

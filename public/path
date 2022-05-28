@@ -62,7 +62,13 @@
                         "name": "homemade bell sekolah arduino",
                         "type": "file",
                         "ext": "mp4",
-                        "content": "what are u lookin at"
+                        "content":"assets/video/video.mp4"
+                    },
+                    {
+                        "name": "sandbox multiplayer game (socket.io)",
+                        "type": "file",
+                        "ext": "mp4",
+                        "content":"assets/video/sandbox.mp4"
                     }
                 ]
             },
