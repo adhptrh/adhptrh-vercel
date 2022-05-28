@@ -1,10 +1,5 @@
 [
     {
-        "name": "home",
-        "type": "folder",
-        "content": []
-    },
-    {
         "name": "desktop",
         "type": "folder",
         "content": [
@@ -94,18 +89,6 @@
                 "ext": "exe",
                 "id": 4,
                 "closeState": false
-            }
-        ]
-    },
-    {
-        "name": "videos",
-        "type": "folder",
-        "content": [
-            {
-                "name": "homemade bell sekolah arduino",
-                "type": "file",
-                "ext": "mp4",
-                "content": "what are u lookin at"
             }
         ]
     }

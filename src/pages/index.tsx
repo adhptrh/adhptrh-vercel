@@ -50,7 +50,7 @@ export default function Index() {
 
   const deleteDesktopFile = (id) => {
     let temp = path
-    path[1].content = (path[1].content as any).filter((v,i) => {
+    path[0].content = (path[0].content as any).filter((v,i) => {
       if (v.id == id) {
         return false
       }
@@ -166,10 +166,10 @@ export default function Index() {
   })
 
   const updateIcon = () => {
-    if (!path[1]) return
+    if (!path[0]) return
     let top = -70
     let left = 30
-    setRenderIcons(path[1].content.map((v, i) => {
+    setRenderIcons(path[0].content.map((v, i) => {
       top += 100
       if (top+60 > maxHeight) {
         left += 130
@@ -249,7 +249,7 @@ export default function Index() {
         setPath(v)
         setForms([
           {
-            ...v[1].content[0],
+            ...v[0].content[3],
             id: new Date().getTime() + Math.floor(Math.random() * 999),
             closeState: false,
             top: 75,
