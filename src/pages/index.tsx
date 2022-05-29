@@ -309,7 +309,7 @@ export default function Index() {
       </GlobalContext.Provider>
     </div>
     
-    <div className={"overflow-auto-x blur-sm md:blur-none absolute flex items-center justify-center shadow-lg bg-color2 text-white bottom-0 z-[9999999] h-[50px] w-full " + (allowMobile && "blur-none")}>
+    <div className={"overflow-x-auto overflow-hidden blur-sm md:blur-none absolute flex items-center justify-center shadow-lg bg-color2 text-white bottom-0 z-[9999999] h-[50px] w-full " + (allowMobile && "blur-none")}>
       <div onClick={()=>{
         
         setForms(ps => [...ps, {
