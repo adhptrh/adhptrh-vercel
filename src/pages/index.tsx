@@ -38,7 +38,7 @@ export default function Index() {
   const [showRightClickMenu, setShowRightClickMenu] = useState(false)
   const [rightClickMenuProp, setRightClickMenuProp] = useState(rightClickMenuPropInit)
   const [rightClickDataType, setRightClickDataType] = useState("")
-  const [rightClickData, setRightClickData] = useState({id:"", path:""})
+  const [rightClickData, setRightClickData] = useState({ id: "", path: "" })
   const [allowMobile, setAllowMobile] = useState(false)
   const [update, setUpdate] = useState(false)
   const [renderIcons, setRenderIcons] = useState([])
@@ -50,18 +50,18 @@ export default function Index() {
 
   const deleteDesktopFile = (id) => {
     let temp = path
-    path[0].content = (path[0].content as any).filter((v,i) => {
+    path[0].content = (path[0].content as any).filter((v, i) => {
       if (v.id == id) {
         return false
       }
       return true
     })
-    setPath(ps=>temp)
-    setUpdate(ps=>!ps)
+    setPath(ps => temp)
+    setUpdate(ps => !ps)
     updateIcon()
   }
 
-  const rightClickMenu = (e:React.MouseEvent) => {
+  const rightClickMenu = (e: React.MouseEvent) => {
     let target = e.target as HTMLElement
     if (e.button == 2) {
       if (target.id != "rightclickable") return
@@ -80,7 +80,7 @@ export default function Index() {
     }
   }
 
-  const rightClickMenuCancelCheck = (e:React.MouseEvent) => {
+  const rightClickMenuCancelCheck = (e: React.MouseEvent) => {
     let target = e.target as HTMLElement
     if (target.parentElement.id == "ctxmenu") return
     if (target.id != "rightclickable") setShowRightClickMenu(false)
@@ -122,7 +122,7 @@ export default function Index() {
               closeState={v.closeState}
               width={550}
               height={350}
-              top={v.top ?? i * 30 + 30} 
+              top={v.top ?? i * 30 + 30}
               left={v.left ?? i * 30 + 30} />
             break
           case "png":
@@ -134,7 +134,7 @@ export default function Index() {
               closeState={v.closeState}
               width={550}
               height={350}
-              top={v.top ?? i * 30 + 30} 
+              top={v.top ?? i * 30 + 30}
               left={v.left ?? i * 30 + 30} />
             break
           case "mp4":
@@ -146,7 +146,7 @@ export default function Index() {
               width={550}
               height={350}
               content={v.content}
-              top={v.top ?? i * 30 + 30} 
+              top={v.top ?? i * 30 + 30}
               left={v.left ?? i * 30 + 30} />
             break
         }
@@ -171,7 +171,7 @@ export default function Index() {
     let left = 30
     setRenderIcons(path[0].content.map((v, i) => {
       top += 100
-      if (top+60 > maxHeight) {
+      if (top + 60 > maxHeight - 50) {
         left += 130
         top = 30
       }
@@ -180,7 +180,7 @@ export default function Index() {
         icon: "",
         title: ""
       }
-  
+
       switch (v.type) {
         case "filemanager":
           properties.icon = folderImage.src
@@ -190,33 +190,33 @@ export default function Index() {
           properties.icon = folderImage.src
           properties.title = v.name
           break
-  
+
         case "file":
           switch (v.ext) {
             case "txt":
               properties.icon = txtImage.src
               break
-  
+
             case "exe":
               properties.icon = terminalImage.src
               break
           }
-  
+
           properties.title = v.name + "." + v.ext
           break
-  
+
         case "terminal":
           properties.title = v.name + "." + v.ext
           properties.icon = terminalImage.src
           break
-  
+
       }
 
       return <DesktopIcon
         key={v.id}
         id={v.id}
         path={"root/desktop"}
-        onTouchEnd={(e)=> {
+        onTouchEnd={(e) => {
           e.preventDefault()
           e.stopPropagation()
           setForms(ps => [...ps, {
@@ -243,8 +243,8 @@ export default function Index() {
   }
 
   const fetchapi = async () => {
-    fetch("/path").then((r)=>{
-      r.json().then((v)=>{
+    fetch("/path").then((r) => {
+      r.json().then((v) => {
         setPath(v)
         setForms([
           {
@@ -273,9 +273,9 @@ export default function Index() {
     fetchapi()
   }, [])
 
-  useEffect(()=>{
+  useEffect(() => {
     updateIcon()
-  },[path, maxHeight])
+  }, [path, maxHeight])
   return <>
     <Head>
       <title>adhptrh</title>
@@ -283,8 +283,7 @@ export default function Index() {
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
     </Head>
     <p className="font-fixedsys opacity-0 absolute">load</p>
-    <Image
-      src={bg.src} alt="desktop-image" priority={true} layout="fill" objectFit="cover" />
+    <Image src={bg.src} alt="desktop-image" priority={true} layout="fill" objectFit="cover" />
     <div
       id="rightclickable"
       onMouseDown={rightClickMenuCancelCheck}
@@ -292,12 +291,12 @@ export default function Index() {
       className={"absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden " + (allowMobile && "blur-none")}>
 
       <GlobalContext.Provider value={{
-        zindex,setZindex,
-        forms,setForms,
+        zindex, setZindex,
+        forms, setForms,
         closeForm,
-        setShowRightClickMenu,showRightClickMenu,
-        setRightClickMenuProp,rightClickMenuProp,
-        setPath,path,
+        setShowRightClickMenu, showRightClickMenu,
+        setRightClickMenuProp, rightClickMenuProp,
+        setPath, path,
         setRightClickDataType, rightClickDataType,
         setRightClickData, rightClickData,
         deleteDesktopFile,
@@ -306,15 +305,37 @@ export default function Index() {
       >
         {renderIcons}
         {RenderForms}
-        {showRightClickMenu && ((rightClickDataType == "file") ? <FileContextMenu/> : <DesktopContextMenu/>)  }
+        {showRightClickMenu && ((rightClickDataType == "file") ? <FileContextMenu /> : <DesktopContextMenu />)}
       </GlobalContext.Provider>
     </div>
+    
+    <div className={"overflow-auto-x blur-sm md:blur-none absolute flex items-center justify-center shadow-lg bg-color2 text-white bottom-0 z-[9999999] h-[50px] w-full bg-white " + (allowMobile && "blur-none")}>
+      <div onClick={()=>{
+        
+        setForms(ps => [...ps, {
+          id: new Date().getTime() + Math.floor(Math.random() * 999),
+          closeState: false,
+          name: "File Manager",
+          type: "filemanager"
+        }])
+      }} className="flex items-center cursor-pointer bg-color3 transition-all px-2 py-1 mr-2 rounded hover:bg-color4" >
+        <Image src={"/assets/img/folder.png"} alt="dekstop-icon" width={32} height={32} className="shadow-2xl mt-1" style={{ zIndex: 1, imageRendering: "pixelated" }}></Image>
+      </div>
+      {
+        forms.map((v,k)=>{
+          return <div key={k} className="flex items-center cursor-pointer bg-color1 transition-all px-4 py-2 mr-2 rounded border-t-color5 hover:bg-color4">
+              <p style={{ display:"inline", whiteSpace:"nowrap" }}>{v.name.length > 15 ? v.name.substring(0,15)+"...":v.name}</p>
+          </div>
+        })
+      }
+    </div>
 
-    <div className={"flex flex-col absolute md:hidden top-0 p-10 w-full h-full text-white z-[9999999] items-center justify-center " + (allowMobile && "hidden")}>
+    <div className={"flex flex-col absolute md:hidden top-0 p-10 w-full h-full text-white z-[99999999] items-center justify-center " + (allowMobile && "hidden")}>
       <p className="text-center font-fixedsys">Message from Adhika:</p>
       <p className="text-center">Bad experience for mobile users, use pc for better experience.</p>
-      <button onClick={()=>{setAllowMobile(ps=>!ps)}} className={"bg-white mt-4 rounded-md p-3 text-color2 shadow-xl"}>It&apos;s ok, let me in.</button>
+      <button onClick={() => { setAllowMobile(ps => !ps) }} className={"bg-white mt-4 rounded-md p-3 text-color2 shadow-xl"}>It&apos;s ok, let me in.</button>
     </div>
+
     {update && <p className="absolute"></p>}
   </>
 }
