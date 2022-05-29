@@ -9,8 +9,7 @@ export default function FileContextMenu(props) {
     let temp = path
     temp[0].content = temp[0].content.filter((v,i) => {
       if (v.id == rightClickData.id) {
-        console.log("SAME ID")
-        v.closeState = "true"
+        v.closeState = true
       }
       return true
     })

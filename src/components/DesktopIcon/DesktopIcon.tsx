@@ -33,8 +33,7 @@ export default function DesktopIcon(props) {
   const iconContainer = useRef(null)
 
   useEffect(()=>{
-    if (props.closeState == "true" || props.closeState == true) {
-      console.log("yow");
+    if (props.closeState == true) {
       (iconContainer.current as HTMLDivElement).classList.add("fade")
       setTimeout(()=>{
         deleteDesktopFile(props.id)
