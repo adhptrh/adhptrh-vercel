@@ -212,8 +212,6 @@ export default function Index() {
   
       }
 
-      
-
       return <DesktopIcon
         key={v.id}
         id={v.id}
@@ -238,6 +236,7 @@ export default function Index() {
         }}
         icon={properties.icon}
         title={properties.title}
+        closeState={v.closeState}
         top={top}
         left={left} />
     }))

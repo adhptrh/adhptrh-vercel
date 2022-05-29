@@ -33,14 +33,15 @@ export default function DesktopIcon(props) {
   const iconContainer = useRef(null)
 
   useEffect(()=>{
-    if (props.closestate == "true") {
+    if (props.closeState == "true" || props.closeState == true) {
+      console.log("yow");
       (iconContainer.current as HTMLDivElement).classList.add("fade")
       setTimeout(()=>{
         deleteDesktopFile(props.id)
       },500)
     }
     
-  }, [props.closestate])
+  }, [props.closeState])
 
 
   return <div id="rightclickable" data-type={"file"} data-pathid={props.id}>

@@ -46,7 +46,9 @@
                         "id": 8,
                         "closeState": false
                     }
-                ]
+                ],
+                "id":12,
+                "closeState": false
             },
             {
                 "name": "Projects",
@@ -57,21 +59,30 @@
                         "name": "homemade bell sekolah arduino",
                         "type": "file",
                         "ext": "mp4",
-                        "content":"assets/video/video.mp4"
+                        "content":"assets/video/video.mp4",
+                        "id":9,
+                        "closeState": false
                     },
                     {
                         "name": "sandbox multiplayer game (socket.io)",
                         "type": "file",
                         "ext": "mp4",
-                        "content":"assets/video/sandbox.mp4"
+                        "content":"assets/video/sandbox.mp4",
+                        "id":10,
+                        "closeState": false
+
                     },
                     {
                         "name": "image processing to detect puzzle",
                         "type": "file",
                         "ext": "mp4",
-                        "content":"assets/video/imgproc.mp4"
+                        "content":"assets/video/imgproc.mp4",
+                        "id":11,
+                        "closeState": false
                     }
-                ]
+                ],
+                "id": 13,
+                "closeState": false
             },
             {
                 "name": "welcome",
@@ -86,7 +97,7 @@
                 "type": "file",
                 "ext": "txt",
                 "content": "Hi there, my name is Adhika Putra Hermanda you can call me Dika.\nMy nationality is Indonesian and I was born in Pekanbaru, August 28, 2003.\nMy hobbies are Programming, Listening to music, Playing Piano and Guitar, Composing music, and watching some Anime.",
-                "id": 2,
+                "id": 3,
                 "closeState": false
             },
             {
@@ -94,14 +105,14 @@
                 "type": "file",
                 "ext": "txt",
                 "content": "Tools that i use:\n- Visual Studio Code\nMostly to code a websites and a command line interface application.\n- Visual Studio\nMostly to code a windows form application using C#.\n- Git\nHelp to manage my project and collaborating with other programmers.\n- Docker\nEasily send a project to anyone without getting errors with them.\n- Tensorflow\nTraining a model to recognize image to detect an object.\n\nFrameworks that i use:\n- Fiber, Laravel, CodeIgniter, ReactJS, NextJS, VueJS, Svelte.\n\nLanguage that i use:\n- Javascript/Typescript, Go, Python, C++, C#, Lua.\n\nDatabase that i use:\n- MySQL/MariaDB, MongoDB, Text file.\n\nConcept:\n- RESTful API, MVC, OOP.",
-                "id": 3,
+                "id": 4,
                 "closeState": false
             },
             {
                 "name": "Terminal",
                 "type": "terminal",
                 "ext": "exe",
-                "id": 4,
+                "id": 5,
                 "closeState": false
             }
         ]

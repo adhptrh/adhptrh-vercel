@@ -7,13 +7,13 @@ export default function FileContextMenu(props) {
 
   const deleteDesktopFile = (e) => {
     let temp = path
-    temp[1].content = temp[1].content.filter((v,i) => {
+    temp[0].content = temp[0].content.filter((v,i) => {
       if (v.id == rightClickData.id) {
+        console.log("SAME ID")
         v.closeState = "true"
       }
       return true
     })
-    updateIcon()
     setPath(ps => [...temp])
     setShowRightClickMenu(false)
   }
