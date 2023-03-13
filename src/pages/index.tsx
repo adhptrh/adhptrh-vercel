@@ -18,16 +18,6 @@ import Video from "../components/Video/Video"
 import Photo from "../components/Photo/Photo"
 export default function Index() {
 
-  /* const formsInit = [
-    {
-      ...pathInit[1].content[1],
-      id: new Date().getTime() + Math.floor(Math.random() * 999),
-      closeState: false,
-      top: 75,
-      left: 150
-    }
-  ] */
-
   const rightClickMenuPropInit = {
     top: 0,
     left: 0,
