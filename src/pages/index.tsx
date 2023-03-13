@@ -11,6 +11,7 @@ import DesktopIcon from "../components/DesktopIcon/DesktopIcon"
 import Terminal from "../components/Terminal/Terminal"
 import Head from "next/head"
 import Image from "next/image"
+import Script from "next/script"
 import DesktopContextMenu from "../components/ContextMenu/DesktopContextMenu"
 import FileContextMenu from "../components/ContextMenu/FileContextMenu"
 import Video from "../components/Video/Video"
@@ -43,6 +44,7 @@ export default function Index() {
   const [update, setUpdate] = useState(false)
   const [renderIcons, setRenderIcons] = useState([])
   const [maxHeight, setMaxHeight] = useState(1000)
+  const [initiatedGoogleAnalytics, setInitiatedGoogleAnalytics] = useState(false)
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
@@ -261,6 +263,7 @@ export default function Index() {
   }
 
   useEffect(() => {
+    console.log("Page initiate")
     document.addEventListener("contextmenu", (e) => {
       e.preventDefault()
     })
@@ -281,7 +284,18 @@ export default function Index() {
       <title>adhptrh</title>
       <meta name="viewport" content="initial-scale=0.8, width=device-width" />
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
+
     </Head>
+    <Script async src="https://www.googletagmanager.com/gtag/js?id=G-J43K1ZW0J2"></Script>
+    <Script>
+      {`
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+      
+        gtag('config', 'G-J43K1ZW0J2');
+      `}
+    </Script>
     <p className="font-fixedsys opacity-0 absolute">load</p>
     <Image src={bg.src} alt="desktop-image" priority={true} layout="fill" objectFit="cover" />
     <div
