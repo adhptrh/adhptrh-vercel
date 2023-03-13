@@ -44,7 +44,6 @@ export default function Index() {
   const [update, setUpdate] = useState(false)
   const [renderIcons, setRenderIcons] = useState([])
   const [maxHeight, setMaxHeight] = useState(1000)
-  const [initiatedGoogleAnalytics, setInitiatedGoogleAnalytics] = useState(false)
 
   const closeForm = (id: number) => {
     setForms(ps => ps.filter((v, i) => { if (id == v.id) { return false } return true }))
