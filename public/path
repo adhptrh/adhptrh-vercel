@@ -104,7 +104,7 @@
                 "name": "skills",
                 "type": "file",
                 "ext": "txt",
-                "content": "Tools that i use:\n- Visual Studio Code\nMostly to code a websites and a command line interface application.\n- Visual Studio\nMostly to code a windows form application using C#.\n- Git\nHelp to manage my project and collaborating with other programmers.\n- Docker\nEasily send a project to anyone without getting errors with them.\n- Tensorflow\nTraining a model to recognize image to detect an object.\n\nFrameworks that i use:\n- Fiber, Laravel, CodeIgniter, ReactJS, NextJS, VueJS, Svelte.\n\nLanguage that i use:\n- Javascript/Typescript, Go, Python, C++, C#, Lua.\n\nDatabase that i use:\n- MySQL/MariaDB, MongoDB, Text file.\n\nConcept:\n- RESTful API, MVC, OOP.",
+                "content": "Tools that i use:\n- Visual Studio Code\nMostly to code a websites and a command line interface application.\n- Visual Studio\nMostly to code a windows form application using C#.\n- Git\nHelp to manage my project and collaborating with other programmers.\n- Docker\nEasily send a project to anyone without getting errors with them.\n\nFrameworks that i use:\n- Laravel, CodeIgniter, ReactJS, NextJS, Svelte.\n\nLanguage that i use:\n- Javascript/Typescript, Go, Python, C++, C#, Lua.\n\nDatabase that i use:\n- MySQL/MariaDB, MongoDB, Text file.\n\nArchitectures:\n- RESTful API, MVC, OOP.",
                 "id": 4,
                 "closeState": false
             },
