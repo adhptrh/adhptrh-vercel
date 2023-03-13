@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react"
 import Container from "../components/Container/Container"
 import { GlobalContext } from "../helpers/GlobalContext"
-import bg from "../assets/img/bg.jpg"
+import bg from "../assets/img/bg.png"
 import Folder from "../components/Folder/Folder"
 import Txt from "../components/Txt/Txt"
 import folderImage from "../assets/img/folder.png"
@@ -286,8 +286,8 @@ export default function Index() {
       <meta name="description" content="Hi, my name is Adhika and welcome to my website" />
 
     </Head>
-    <Script async src="https://www.googletagmanager.com/gtag/js?id=G-J43K1ZW0J2"></Script>
-    <Script>
+    <Script id="ga" async src="https://www.googletagmanager.com/gtag/js?id=G-J43K1ZW0J2"></Script>
+    <Script id="gaa">
       {`
         window.dataLayer = window.dataLayer || [];
         function gtag(){dataLayer.push(arguments);}
