@@ -291,7 +291,7 @@ export default function Index() {
       id="rightclickable"
       onMouseDown={rightClickMenuCancelCheck}
       onMouseUp={rightClickMenu}
-      className={"absolute w-full transition-all h-full blur-sm md:blur-none overflow-hidden " + (allowMobile && "blur-none")}>
+      className={"absolute w-full transition-all h-full md:blur-none overflow-hidden " + (allowMobile ? "blur-none":"blur-sm")}>
 
       <GlobalContext.Provider value={{
         zindex, setZindex,
